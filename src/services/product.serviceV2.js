@@ -32,6 +32,7 @@ class ProductFactory {
   }
 
   static async createProduct(type, payload) {
+    console.log("Requested product type:", type); // In ra loại sản phẩm
     const productClass = ProductFactory.productRegistry[type];
 
     if (!productClass) throw new BadRequestError(`Invalid type ${type}`);
@@ -67,6 +68,7 @@ class ProductFactory {
     return await findAllPublishForShop({ query, limit, skip });
   }
 
+  // search with index mongodb
   static async searchProducts({ keySearch }) {
     return await searchProductByUser({ keySearch });
   }
@@ -204,8 +206,8 @@ class Furniture extends Product {
 }
 
 //register product type
-ProductFactory.registerProductType("Electronic", Electronics);
+ProductFactory.registerProductType("Electronics", Electronics);
 ProductFactory.registerProductType("Clothing", Clothing);
-ProductFactory.registerProductType("Funiture", Furniture);
+ProductFactory.registerProductType("Furniture", Furniture);
 
 module.exports = ProductFactory;

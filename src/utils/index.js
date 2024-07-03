@@ -1,4 +1,14 @@
 const _ = require("lodash");
+const { Types } = require("mongoose");
+
+// Function to escape special characters in a string for use in a regular expression
+function escapeRegExp(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
+}
+
+const convertToObjectIdMongodb = (id) => {
+  return new Types.ObjectId(id);
+};
 
 const getInforData = ({ fileds = [], object = {} }) => {
   return _.pick(object, fileds);
@@ -46,4 +56,6 @@ module.exports = {
   unGetSelectData,
   removeUndefinedData,
   updateNestedObjectParser,
+  convertToObjectIdMongodb,
+  escapeRegExp,
 };

@@ -8,7 +8,7 @@ const { Types } = require("mongoose");
 const { getSelectData, unGetSelectData } = require("../../utils/index");
 
 const searchProductByUser = async ({ keySearch }) => {
-  const regexSearch = new RegExp(keySearch);
+  const regexSearch = new RegExp(keySearch, "i");
   const results = await product
     .find(
       {

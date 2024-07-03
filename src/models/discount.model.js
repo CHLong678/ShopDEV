@@ -56,12 +56,12 @@ var discountSchema = new Schema(
       required: true,
     },
     discount_shopId: {
-      type: Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId, // need to convert shopId from String to ObjectId
       ref: "Shop",
     },
     discount_is_active: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     discount_applies_to: {
       type: String,
@@ -80,6 +80,4 @@ var discountSchema = new Schema(
 );
 
 //Export the model
-module.exports = {
-  inventory: model(DOCUMENT_NAME, discountSchema),
-};
+module.exports = model(DOCUMENT_NAME, discountSchema);

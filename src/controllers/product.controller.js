@@ -72,6 +72,7 @@ class ProductController {
     }).send(res);
   };
 
+  // search products with index mongodb
   getListSearchProduct = async (req, res, next) => {
     new SuccessResponse({
       message: "Get list searched successfully",
