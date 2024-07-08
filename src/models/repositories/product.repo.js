@@ -5,7 +5,11 @@ const {
   furniture,
 } = require("../../models/product.model");
 const { Types } = require("mongoose");
-const { getSelectData, unGetSelectData } = require("../../utils/index");
+const {
+  getSelectData,
+  unGetSelectData,
+  convertToObjectIdMongodb,
+} = require("../../utils/index");
 
 const searchProductByUser = async ({ keySearch }) => {
   const regexSearch = new RegExp(keySearch, "i");
@@ -101,6 +105,12 @@ const unPublishProductByShop = async ({ product_shop, product_id }) => {
   return modifiedCount;
 };
 
+const getProductById = async (productId) => {
+  return await product
+    .findOne({ _id: convertToObjectIdMongodb(productId) })
+    .lean();
+};
+
 module.exports = {
   findAllDraftsForShop,
   publishProductByShop,
@@ -110,4 +120,5 @@ module.exports = {
   findAllProducts,
   findProduct,
   updateProductById,
+  getProductById,
 };
