@@ -1,15 +1,13 @@
 "use strict";
 
 const cartModel = require("../models/cart.model");
-const { BadRequestError, NotFoundError } = require("../core/error.response");
-const { convertToObjectIdMongodb } = require("../utils");
+const { NotFoundError } = require("../core/error.response");
 const {
   createUserCart,
   updateUserCartQuantity,
   deleteCart,
 } = require("../models/repositories/cart.repo");
 const { getProductById } = require("../models/repositories/product.repo");
-const { product } = require("../models/product.model");
 
 /*
   Key features: Cart Service
